@@ -1,4 +1,6 @@
 var express = require('express');
+var controller = require('../controllers');
+
 var router = express.Router();
 
 
@@ -13,7 +15,13 @@ router.get('/home', (req, res, next) => {
 
 
 
+/*choix des personnages */
+router.get("/choixPerso", controller.db.choixPerso);
 
+
+
+/* POST enigme*/
+router.post('/enigme', controller.enigme.randomEnigme);
 
 
 
