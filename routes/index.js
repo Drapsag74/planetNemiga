@@ -1,10 +1,12 @@
 var express = require('express');
+var controller = require('../controllers');
+
 var router = express.Router();
 
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.redirect("/home");
+  res.redirect('/home');
 });
 
 router.get('/home', (req, res, next) => {
@@ -13,9 +15,17 @@ router.get('/home', (req, res, next) => {
 
 
 
+/*choix des personnages */
+router.get('/choixPerso', controller.db.choixPerso);
 
 
+/* POST enigme*/
+router.post('/enigme', controller.enigme.randomEnigme);
 
+
+router.get('/progCHal', (req, res, next) => {
+  res.render('progChall');
+})
 
 
 
