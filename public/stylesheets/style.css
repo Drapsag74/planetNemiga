@@ -3,12 +3,36 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+h4>a {
+  color: #ffffff;
 }
 
 #editor { 
   position: relative;
   height: 300px;
   
+}
+
+
+.blanc {
+  color: white;
+}
+
+#homeBackgroudImage {
+  background-image: url(../images/andre-benz-256762.jpg);
+}
+
+.secondary.pointing.menu .toc.item {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .secondary.pointing.menu .item,
+  .secondary.pointing.menu .menu {
+    display: none !important;
+  }
+  .secondary.pointing.menu .toc.item {
+    display: block !important;
+    margin-right: 17%;
+  }
 }

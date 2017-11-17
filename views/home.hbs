@@ -1,18 +1,44 @@
-<div class="ui grid" id="nav">
-  <div class="one wide column">
-    <img src="/images/logo.png" alt="">
-  </div>
-  <div class="two wide column">
-    <h1 class="ui pink header">{{title}}</h1>
-  </div>
-  <div class="thirteen wide column">
-    <button onclick="alert ('Vous avez cliqué sur le bouton login')" class="ui blue button">Login</button>
-  </div>
-</div>
+<script>
+  $(document)
+    .ready(function () {
 
-<div class="ui sixteen column centered grid" id="Message">
-  <div class="column" id="texte">Commencez à jouer en cliquant sur le bouton</div>
-</div>
-<div class="ui sixteen column centered grid" id="jouer">
-  <button onclick="alert ('Vous avez cliqué sur le bouton jouer')" class="ui purple button">Jouer</button>
-</div>
+      // On créé une barre menu sur le coté, et on lie l'icone de menu avec
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+        ;
+
+    })
+    ;
+</script>
+<div id="homeBackgroudImage">
+  <div class="ui vertical inverted sidebar menu">
+    <a class="item">Login</a>
+    <a class="item">Sign up</a>
+  </div>
+
+
+  <div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+      <div class="ui container">
+        <div class="ui large secondary pointing menu">
+          <a class="toc item" style="padding-bottom: 3.3em;">
+            <i class="sidebar icon blanc"></i>
+          </a>
+          <a href="/"><img src="images/logoBlanc.png" alt="" style="height: 100px; width: 100px;"</a>
+          <div class="right item">
+            <a class="ui inverted button" style="margin-right:0.5em; margin-bottom:1.5em;">Log in</a>
+            <a class="ui inverted button" style="margin-bottom:1.5em;">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui vertical center aligned segment" style="padding-bottom: 20%;">
+      <div class="ui text container">
+        <h1 class="ui inverted header" style="margin-top:7em;text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;">Commencer l'Aventure</h1>
+        <button onclick="alert ('Vous avez cliqué sur le bouton jouer')" class="ui huge red button"> Jouer</button>
+      </div>
+    </div>
+
+
+  </div>
