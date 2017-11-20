@@ -29,9 +29,8 @@ router.get('/progCHal', (req, res, next) => {
 router.get('/ChoixMonde',(req,res,next)=>{
   res.render('ChoixMonde');
 })
-router.get('/pageEnigme',(req,res,next)=>{
-  res.render('pageEnigme');
-})
+router.get('/pageEnigme',controller.enigme.randomEnigme);
+
 
 
 module.exports =  router;
