@@ -26,7 +26,10 @@ router.post('/enigme', controller.enigme.randomEnigme);
 router.get('/progCHal', (req, res, next) => {
   res.render('progChall');
 })
-
+router.get('/ChoixMonde',(req,res,next)=>{
+  res.render('ChoixMonde');
+})
+router.get('/pageEnigme',controller.enigme.randomEnigme);
 
 
 
