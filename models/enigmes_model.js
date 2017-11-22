@@ -3,28 +3,22 @@ dao = require("./DAO_model");
 
 /**représente une enigme
  * @property {number} _id - id de l'énigme
- * @property {string} _matiere - matière de l'énigme
- * @property {string} _chapitre - chapitre de l'énigme
- * @property {string} _description - description de l'énigme
- * @property {number} _difficultee - difficultée de l'énigme entre 1 et 10
+ * @property {string} _titre - titre de l'énigme
+ * @property {string} _enonce - enonce de l'énigme
  * @private
 */
 module.exports = class enigme {
 
     /**
     * @param {number} id - id de l'énigme (null par défaut)
-    * @param {string} matiere - matière de l'énigme (null par défaut)
-    * @param {string} chapitre - chapitre de l'énigme (null par défaut)
-    * @param {string} description - description de l'énigme (null par défaut)
-    * @param {number} difficultee - difficultée de l'énigme entre 0 et 10 (0 par défaut)
+    * @param {number} titre - titre de l'énigme (null par défaut)
+    * @param {string} enonce - enonce de l'énigme (null par défaut)
     * @public
     */
-    constructor(id = null, matiere = null , chapitre = null , description = null , difficultee = 0) {
+    constructor(id = null, titre = null, enonce = null) {
         this._id = id;
-        this._matiere = matiere;
-        this._chapitre = chapitre;
-        this._description = description;
-        this._difficultee = difficultee;
+        this._titre = titre;
+        this._enonce = enonce;
     }
 
 
@@ -37,17 +31,11 @@ module.exports = class enigme {
     getId() {
         return this._id;
     }
-    getMatiere() {
-        return this._matiere;
+    getTitre() {
+        return this._titre;
     }
-    getChapitre() {
-        return this._chapitre;
-    }
-    getDescription() {
-        return this._description;
-    }
-    getDifficultee() {
-        return this._difficultee;
+    getEnonce() {
+        return this._enonce;
     }
 
 
@@ -57,18 +45,26 @@ module.exports = class enigme {
     ***************************
     ***************************/
 
-    async randomizeEnigme(matiere) {
-        var request = await dao.getRandomFromEnigmes(matiere);
+    async randomizeEnigme() {
+        var request = await dao.getRandomFromEnigmes();
         if (request === null) throw ("Requête renvoie null");
-        else {
-            this._id = request.id;
-            this._matiere = request.matiere;
-            this._chapitre = request.chapitre;
-            this._description = request.description;
-            this._difficultee = request.difficultee;
-        }
-        
-        
+        this._id = request.id;
+        this._titre = request.titre;
+        this._enonce = request.enonce;
     }
 
+    async verifReponse(reponse, idEnigme) {
+        try {
+            var request = await dao.getReponseEnigme(idEnigme);
+        } catch(e){
+            console.log(e);
+        }
+        if (request === null) throw ("Requête renvoie null");
+        if(request.texte === reponse) {
+            return true
+        } else {
+            return false;
+        }
+
+    }
 }
