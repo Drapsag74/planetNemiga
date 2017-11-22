@@ -19,8 +19,8 @@ router.get('/home', (req, res, next) => {
 router.get('/choixPerso', controller.db.choixPerso);
 
 
-/* POST enigme*/
-router.post('/enigme', controller.enigme.randomEnigme);
+/* POST reponseEnigme*/
+router.post('/pageEnigme', controller.enigme.VerifReponse);
 
 
 router.get('/progCHal', (req, res, next) => {
