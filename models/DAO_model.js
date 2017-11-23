@@ -18,10 +18,18 @@ class Dao {
         return data;
     }
 
+    async getEnigme(id) {
+        try {
+            var data = await this._db.one("SELECT * FROM challenges.enigmes WHERE id=$1", id);
+        } catch(e) {
+            console.log(e);
+        }
+        return data;
+    }
+
     async getRandomFromEnigmes() {
-        var data = null; //will be null if query fails
     try {
-            data = (await this._db.any("SELECT * FROM challenges.enigmes ORDER BY RANDOM() LIMIT 1"))[0];
+            var data = await this._db.one("SELECT * FROM challenges.enigmes ORDER BY RANDOM() LIMIT 1");
         } catch(e) {
             console.log("ERROR :", e);
         }
@@ -29,12 +37,12 @@ class Dao {
     }
 
     async getReponseEnigme(idEnigme) {
-        var data = null; //will be null if query fails
         try {
-            data = (await this._db.any("SELECT * FROM challenges.enigmes WHERE idEnigme=$1", idEnigme))[0];
+            var data = await this._db.one("SELECT * FROM challenges.reponses WHERE idEnigme=$1", idEnigme);
         } catch(e) {
             console.log("ERROR :", e);
         }
+        return data;
     }
     
 }

@@ -19,8 +19,9 @@ router.get('/home', (req, res, next) => {
 router.get('/choixPerso', controller.db.choixPerso);
 
 
-/* POST reponseEnigme*/
-router.post('/pageEnigme', controller.enigme.VerifReponse);
+/*reponse aux enigmes*/
+router.get('/pageEnigme',controller.enigme.randomEnigme);
+router.post('/pageEnigme', controller.enigme.verifReponse);
 
 
 router.get('/progCHal', (req, res, next) => {
@@ -29,7 +30,12 @@ router.get('/progCHal', (req, res, next) => {
 router.get('/ChoixMonde',(req,res,next)=>{
   res.render('ChoixMonde');
 })
-router.get('/pageEnigme',controller.enigme.randomEnigme);
+router.get('/login', (req, res, next) => {
+  res.render('login');
+})
+router.get('/inscription', (req, res, next) => {
+  res.render('inscription');
+})
 
 
 

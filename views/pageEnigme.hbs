@@ -1,11 +1,30 @@
+<script>
+  $(document).ready(function () {
+    $('.message .close')
+      .on('click', function () {
+        $(this)
+          .closest('.message')
+          .transition('fade');
+      });
+  });
+</script>
+
 <div class="">
-  <button class="ui button "type="Temps" name="temps"> 0.0.0</button>
+  {{#if reponseFausse}}
+  <div class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">
+      Mauvaise réponse
+    </div>
+  </div>
+  {{/if}}
+  <button class="ui button" type="Temps" name="temps"> <time>0:0:0</time></button>
 </div>
 <div class="ui grid">
   <div class="ui two row column">
 
     <div class="sixteen wide column">
-      <h2 class ="ui h2">un exemple d'énigme</h2>
+      <h2 class="ui h2">{{titre}}</h2>
       <p>{{enonce}}</p>
     </div>
     <br>
@@ -15,21 +34,21 @@
       <div>
         <h3 align="center">reponse</h3>
       </div>
-
-      <div>
+      <form action="/pageEnigme" method="post">
         <textarea name="reponse" rows="8" cols="50"></textarea>
-      </div>
-
-      <div>
-        <button class="ui button primary" type="button" name="effacer"> effacer</button>
-        <button class="ui button primary" type="button" name="envoyer"> envoyer</button>
-      </div>
+        <div>
+          <button class="ui button primary" type="button" name="effacer"> effacer</button>
+          <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
+        </div>
+      </form>
 
     </div>
   </div>
 
 
 </div>
-<a href=""><img src="https://www.escautpont.fr/fichs/15521.jpg" alt="" width="100px" align="right"></a>
+<a href="">
+  <img src="https://www.escautpont.fr/fichs/15521.jpg" alt="" width="100px" align="right">
+</a>
 
 </body>

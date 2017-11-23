@@ -46,8 +46,12 @@ module.exports = class enigme {
     ***************************/
 
     async randomizeEnigme() {
-        var request = await dao.getRandomFromEnigmes();
-        if (request === null) throw ("Requête renvoie null");
+        try {
+            var request = await dao.getRandomFromEnigmes();
+        } catch(e) {
+            console.log(e);
+        }
+        if (request === undefined) throw ("Erreur requête vide");
         this._id = request.id;
         this._titre = request.titre;
         this._enonce = request.enonce;
@@ -59,12 +63,24 @@ module.exports = class enigme {
         } catch(e){
             console.log(e);
         }
-        if (request === null) throw ("Requête renvoie null");
+        if (request === undefined) throw ("Erreur requête vide");
         if(request.texte === reponse) {
             return true
         } else {
             return false;
         }
 
+    }
+
+    async CreateEnigmeFromDb(id) {
+            try {
+                var request = await dao.getEnigme(id);
+            } catch(e) {
+                console.log(e); 
+            }
+            if (request === undefined) throw ("Erreur requête vide");
+            this._id = id;
+            this._titre = request.titre;
+            this._enonce = request.enonce;
     }
 }
