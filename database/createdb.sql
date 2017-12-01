@@ -32,6 +32,12 @@ CREATE TABLE users.personnages (
 );
 
 
+CREATE TABLE users.joueurs (
+	pseudo VARCHAR PRIMARY KEY,
+	mail VARCHAR,
+	motDePasse VARCHAR,
+	experience INTEGER
+);
 
 INSERT INTO challenges.enigmes VALUES(DEFAULT, 'enigme du rois gaspard', 'la meilleur enigme du monde entier');
 INSERT INTO users.personnages VALUES('Gaspard the god', 'homme','/images/logo.png');

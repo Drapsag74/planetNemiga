@@ -37,6 +37,8 @@ router.get('/inscription', (req, res, next) => {
   res.render('inscription');
 })
 
-
+router.get('/mondeMaths', (req, res, next) => {
+  res.render('mondeMath');
+})
 
 module.exports =  router;

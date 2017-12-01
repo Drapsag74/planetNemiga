@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div.main.container {
+  padding: 50px;
 }
 
 h4>a {
@@ -12,7 +15,6 @@ h4>a {
   height: 300px;
 
 }
-
 
 .blanc {
   color: white;

@@ -9,46 +9,48 @@
   });
 </script>
 
-<div class="">
-  {{#if reponseFausse}}
-  <div class="ui negative message">
-    <i class="close icon"></i>
-    <div class="header">
-      Mauvaise réponse
-    </div>
-  </div>
-  {{/if}}
-  <button class="ui button" type="Temps" name="temps"> <time>0:0:0</time></button>
-</div>
-<div class="ui grid">
-  <div class="ui two row column">
-
-    <div class="sixteen wide column">
-      <h2 class="ui h2">{{titre}}</h2>
-      <p>{{enonce}}</p>
-    </div>
-    <br>
-
-    <div class="ui segment" align="right">
-
-      <div>
-        <h3 align="center">reponse</h3>
+<div class="main container">
+  <div class="">
+    {{#if reponseFausse}}
+    <div class="ui negative message">
+      <i class="close icon"></i>
+      <div class="header">
+        Mauvaise réponse
       </div>
-      <form action="/pageEnigme" method="post">
-        <textarea name="reponse" rows="8" cols="50"></textarea>
-        <div>
-          <button class="ui button primary" type="button" name="effacer"> effacer</button>
-          <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
-        </div>
-      </form>
-
     </div>
+    {{/if}}
+    <button class="ui button" type="Temps" name="temps">
+      <time>0:0:0</time>
+    </button>
+  </div>
+  <div class="ui grid">
+    <div class="ui two row column">
+
+      <div class="sixteen wide column">
+        <h2 class="ui h2">{{titre}}</h2>
+        <p>{{enonce}}</p>
+      </div>
+      <br>
+
+      <div class="ui segment" align="right">
+
+        <div>
+          <h3 align="center">reponse</h3>
+        </div>
+        <form action="/pageEnigme" method="post">
+          <div class="ui input focus">
+            <input type="text" name="reponse">
+          </div>
+          <div>
+            <button class="ui button primary" type="button" name="effacer"> effacer</button>
+            <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
   </div>
 
-
 </div>
-<a href="">
-  <img src="https://www.escautpont.fr/fichs/15521.jpg" alt="" width="100px" align="right">
-</a>
-
-</body>

@@ -1,0 +1,14 @@
+ id |                                              texte                                               | idenigme 
+----+--------------------------------------------------------------------------------------------------+----------
+  1 | Le télésiège est constitué de 120 places.                                                        |        1
+  2 | Le télésiège est constitué de 120 places.                                                        |        2
+  3 | 20 bien-sûr. A l'aller et au retour, ce sont les mêmes maisons.                                  |        3
+  4 | 1² = 1 (1er étage)                                                                              +|        4
+    | 2²= 4 (2ème étage)                                                                              +| 
+    | etc...                                                                                          +| 
+    | 44² = 1936                                                                                      +| 
+    | 45² = 2025                                                                                      +| 
+    | L'appartement 2012 est donc au 45ème étage soit à la 14ème place en partant de la droite.       +| 
+    | Celui du dessus est au 44ème étage, à la 13ème place en partant de la droite, c'est à dire 1924. | 
+(4 lignes)
+
