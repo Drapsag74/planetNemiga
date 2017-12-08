@@ -1,2 +1,47 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<script>
+  $(document)
+    .ready(function () {
+
+      // On créé une barre menu sur le coté, et on lie l'icone de menu avec
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+        ;
+
+    })
+    ;
+</script>
+<div id="homeBackgroudImage">
+  <div class="ui vertical inverted sidebar menu">
+    <a href="/login" class="item">Connexion</a>
+    <a href="/inscription" class="item">Inscription</a>
+  </div>
+
+
+  <div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+      <div class="ui container">
+        <div class="ui large secondary pointing menu">
+          <a class="toc item" style="padding-bottom: 3.3em;">
+            <i class="sidebar icon blanc"></i>
+          </a>
+          <a href="/">
+            <img src="images/logoBlanc.png" alt="" style="height: 100px; width: 100px;" </a>
+            <div class="right item">
+              <a href="/login" class="ui inverted button" style="margin-right:0.5em; margin-bottom:1.5em;">Connexion</a>
+              <a href="/inscription" class="ui inverted button" style="margin-bottom:1.5em;">Inscription</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui vertical center aligned segment" style="padding-bottom: 20%;">
+      <div class="ui text container">
+        <h1 class="ui inverted header" style="margin-top:7em;text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;">Commencer l'Aventure</h1>
+
+        <a href="ChoixMonde">
+          <button class="ui huge red button"> Jouer</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
