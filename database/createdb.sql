@@ -33,10 +33,10 @@ CREATE TABLE users.personnages (
 
 
 CREATE TABLE users.joueurs (
-	pseudo VARCHAR PRIMARY KEY,
+	id BIGSERIAL PRIMARY KEY,
+	pseudo VARCHAR UNIQUE,
 	mail VARCHAR,
-	motDePasse VARCHAR,
-	experience INTEGER
+	motDePasse VARCHAR
 );
 
 INSERT INTO challenges.enigmes VALUES(DEFAULT, 'enigme du rois gaspard', 'la meilleur enigme du monde entier');

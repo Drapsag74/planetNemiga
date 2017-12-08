@@ -30,14 +30,17 @@ router.get('/progCHal', (req, res, next) => {
 router.get('/ChoixMonde',(req,res,next)=>{
   res.render('ChoixMonde');
 })
-router.get('/login', (req, res, next) => {
-  res.render('login');
-})
-router.get('/inscription', (req, res, next) => {
-  res.render('inscription');
-})
-router.get('/enigmeReussi',(req,res,next)=>{
-  res.render('enigmeReussi')
+
+//get login page & inscription pages
+router.get('/login', controller.joueur.login);
+router.get('/inscription', controller.joueur.inscription);
+
+//handle login & inscription
+router.post('/login', controller.joueur.handleLogIn);
+router.post('/inscription', controller.joueur.handleSignUp);
+
+router.get('/mondeMaths', (req, res, next) => {
+  res.render('mondeMath');
 })
 router.get('/mondeMath',(req,res,next)=>{
   res.render('mondeMath')

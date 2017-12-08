@@ -74,7 +74,24 @@ class Dao {
     *----------------------------------------------------------------
     */
 
+    async getJoueurById(id) {
+        try {
+            var data = await this._db.one("SELECT id, pseudo, mail FROM users.joueurs WHERE id=$1", parseInt(id, 10));
+        } catch(e) {
+            console.log("ERROR : ", e);
+        }
+        return data;        
+    }
 
+    async getJoueur(pseudo) {
+        try {
+            var data = await this._db.any("SELECT id, pseudo, mail FROM users.joueurs WHERE pseudo=$1", [pseudo]);
+        } catch(e) {
+            console.log("ERROR : ", e);
+        }
+        if (data.length > 0) return data[0];
+        else return undefined;
+    }
     async getMotDePasse(pseudo) {
         try {
             var data = await this._db.one("SELECT motDePasse FROM users.joueurs WHERE pseudo=$1", pseudo);
@@ -84,6 +101,16 @@ class Dao {
         return data;
     }
     
+
+
+    async nouveauJoueur(pseudo, mail, hash) {
+        try {
+            this._db.none('INSERT INTO users.joueurs(pseudo,mail, motDePasse) VALUES($1, $2, $3)', [pseudo, mail, hash]);
+        } catch(e){
+            console.log(e);
+            //throw(e);
+        }
+    }
 }
 
 var dao = new Dao();
