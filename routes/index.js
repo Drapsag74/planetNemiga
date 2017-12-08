@@ -19,8 +19,9 @@ router.get('/home', (req, res, next) => {
 router.get('/choixPerso', controller.db.choixPerso);
 
 
-/* POST enigme*/
-router.post('/enigme', controller.enigme.randomEnigme);
+/*reponse aux enigmes*/
+router.get('/pageEnigme',controller.enigme.randomEnigme);
+router.post('/pageEnigme', controller.enigme.verifReponse);
 
 
 router.get('/progCHal', (req, res, next) => {
@@ -29,8 +30,20 @@ router.get('/progCHal', (req, res, next) => {
 router.get('/ChoixMonde',(req,res,next)=>{
   res.render('ChoixMonde');
 })
-router.get('/pageEnigme',controller.enigme.randomEnigme);
 
+//get login page & inscription pages
+router.get('/login', controller.joueur.login);
+router.get('/inscription', controller.joueur.inscription);
 
+//handle login & inscription
+router.post('/login', controller.joueur.handleLogIn);
+router.post('/inscription', controller.joueur.handleSignUp);
+
+router.get('/mondeMaths', (req, res, next) => {
+  res.render('mondeMath');
+})
+router.get('/mondeMath',(req,res,next)=>{
+  res.render('mondeMath')
+})
 
 module.exports =  router;

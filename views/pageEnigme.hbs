@@ -1,35 +1,56 @@
-<div class="">
-  <button class="ui button "type="Temps" name="temps"> 0.0.0</button>
-</div>
-<div class="ui grid">
-  <div class="ui two row column">
+<script>
+  $(document).ready(function () {
+    $('.message .close')
+      .on('click', function () {
+        $(this)
+          .closest('.message')
+          .transition('fade');
+      });
+  });
+</script>
 
-    <div class="sixteen wide column">
-      <h2 class ="ui h2">un exemple d'énigme</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="main container">
+  <div class="">
+    {{#if reponseFausse}}
+    <div class="ui negative message">
+      <i class="close icon"></i>
+      <div class="header">
+        Mauvaise réponse
+      </div>
     </div>
-    <br>
+    {{/if}}
+    <button class="ui button" type="Temps" name="temps">
+      <time>0:0:0</time>
+    </button>
+  </div>
+  <div class="ui grid">
+    <div class="ui two row column">
 
-    <div class="ui segment" align="right">
-
-      <div>
-        <h3 align="center">reponse</h3>
+      <div class="sixteen wide column">
+        <h2 class="ui h2">{{titre}}</h2>
+        <p>{{enonce}}</p>
       </div>
+      <br>
 
-      <div>
-        <textarea name="reponse" rows="8" cols="50"></textarea>
+      <div class="ui segment" align="right">
+
+        <div>
+          <h3 align="center">reponse</h3>
+        </div>
+        <form action="/pageEnigme" method="post">
+          <div class="ui input focus">
+            <input type="text" name="reponse">
+          </div>
+          <div>
+            <button class="ui button primary" type="button" name="effacer"> effacer</button>
+            <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
+          </div>
+        </form>
+
       </div>
-
-      <div>
-        <button class="ui button primary" type="button" name="effacer"> effacer</button>
-        <button class="ui button primary" type="button" name="envoyer"> envoyer</button>
-      </div>
-
     </div>
+
+
   </div>
 
-
 </div>
-<a href=""><img src="https://www.escautpont.fr/fichs/15521.jpg" alt="" width="100px" align="right"></a>
-
-</body>
