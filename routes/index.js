@@ -36,9 +36,11 @@ router.get('/login', (req, res, next) => {
 router.get('/inscription', (req, res, next) => {
   res.render('inscription');
 })
-
-router.get('/mondeMaths', (req, res, next) => {
-  res.render('mondeMath');
+router.get('/enigmeReussi',(req,res,next)=>{
+  res.render('enigmeReussi')
+})
+router.get('/mondeMath',(req,res,next)=>{
+  res.render('mondeMath')
 })
 
 module.exports =  router;
