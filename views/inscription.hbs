@@ -1,3 +1,78 @@
+<script>
+$(document)
+  .ready(function() {
+    $('.ui.form')
+      .form({
+        fields: {
+          email: {
+            identifier  : 'email',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez entrer votre E-mail'
+              },
+              {
+                type   : 'email',
+                prompt : 'E-mail incorrect'
+              }
+            ]
+          },
+          codeP: {
+            identifier  : 'codeP',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez remplir le champ code postal'
+              }
+            ]
+          },
+          pseudo: {
+            identifier  : 'pseudo',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez remplir le champ pseudo'
+              },
+              {
+                type   : 'length[5]',
+                prompt : 'Le pseudo doit comporter au moins 5 caratères'
+              }
+            ]
+          },
+          passwordConf: {
+            identifier  : 'passwordConf',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez remplir le champ confirmation de mot de passe'
+              }
+            ]
+          },
+          password: {
+            identifier  : 'password',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez entrer votre mot de passe'
+              },
+              {
+                type   : 'length[6]',
+                prompt : 'Votre mot de passe doit comporter au moins 6 caractères'
+              },
+              {
+                type   : 'match[passwordConf]',
+                prompt : 'Les deux mots de passe sont différents'
+              }
+
+            ]
+          }
+        }
+      })
+    ;
+  })
+;
+</script>
+
 <div class="main container">
   <form class="ui form" action="/inscription" method="post" >
     <h4 class="ui dividing header">inscription</h4>
@@ -10,7 +85,7 @@
     <div class="field">
       <label>Adresse e-mail</label>
       <div class="field">
-        <input type="text" name="mail" placeholder="E-mail">
+        <input type="text" name="email" placeholder="E-mail">
       </div>
     </div>
     <div class="field">
@@ -20,20 +95,20 @@
           <input name="ville" placeholder="ville" type="text">
         </div>
         <div class="four wide field">
-          <input name="codePostal" placeholder="code postal" type="text">
+          <input name="codeP" placeholder="code postal" type="text">
         </div>
       </div>
     </div>
     <div class="field">
       <label>Mot de Passe</label>
       <div class="field">
-        <input type="password" name="motDePasse">
+        <input type="password" name="password">
       </div>
     </div>
     <div class="field">
       <label> Confirmation Mot de Passe</label>
       <div class="field">
-        <input type="password" name="motDePasseConfirmation">
+        <input type="password" name="passwordConf">
       </div>
     </div>
     <div class="field">
@@ -47,7 +122,7 @@
         </div>
       </div>
     </div>
-
+<div class="ui error message"></div>
     <button class="ui primary button" type="submit" >Valider</button>
   </form>
 </div>
