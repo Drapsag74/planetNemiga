@@ -5,6 +5,7 @@ var Joueur = require('./joueur_model');
 //passport serialize, deserialize
 
 passport.serializeUser((joueur, done) => {
+    console.log(joueur);
     done(null, joueur._id);
 });
 
@@ -15,6 +16,7 @@ passport.deserializeUser(async (id, done) => {
     } catch (e) {
         console.log(e);
     }
+    console.log(joueur);
     done(null, joueur);
 });
 
@@ -22,11 +24,11 @@ passport.deserializeUser(async (id, done) => {
 
 //signup
 passport.use('signup', new LocalStrategy({
-    usernameField: 'pseudo',
+    usernameField: 'mail',
     passwordField: 'motDePasse',
     passReqToCallback: true
-}, async (req, pseudo, motDePasse, done) => {
-    var joueur = new Joueur(pseudo);
+}, async (req, email, motDePasse, done) => {
+    var joueur = new Joueur(req.body.pseudo, email);
     try {
         joueurEx = await joueur.existe();
     } catch (e) {
@@ -35,7 +37,7 @@ passport.use('signup', new LocalStrategy({
     if (joueurEx) return done(null, false); // req.flash('signup' "Le pseudo : "+pseudo+" est déjà utilisé"
     else {
         try {
-            joueur = await joueur.init('mail', motDePasse);
+            joueur = await joueur.init(email, motDePasse);
         } catch (e) {
             return done(null, false, {
                 message: "Erreur lors de la création de l'utilisateur"
@@ -45,18 +47,27 @@ passport.use('signup', new LocalStrategy({
     }
 }));
 
-//signin
-passport.use('login', new LocalStrategy( async (pseudo, motDePasse, done) => {
-    joueur = new Joueur(pseudo);
+//login
+passport.use('login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'motDePasse',
+    passReqToCallback: true
+},async (req, mail, motDePasse, done) => {
+    joueur = new Joueur(null, mail);
     try {
-        verif = await joueur.verifMdp();
+        var verif = await joueur.verifMdp(mail, motDePasse);
     } catch(e) {
         return done(e);
     }
     if(verif === true) {
-        joueur.connect();
+        try {
+            await joueur.connect();
+        } catch (e) {
+            console.log(e);
+        }
         done(null, joueur);
     } else done(null, false);
-}));
+}
+));
 
 module.exports = passport;

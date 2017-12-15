@@ -4,6 +4,14 @@ var controller = require('../controllers');
 var router = express.Router();
 
 
+
+/* general middleware */
+router.use((req, res, next) => {
+  if(req.user) res.locals.pseudo = req.user._pseudo;
+  next();
+});
+
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.redirect('/home');
@@ -32,7 +40,7 @@ router.get('/ChoixMonde',(req,res,next)=>{
 })
 
 //get login page & inscription pages
-router.get('/login', controller.joueur.login);
+router.get('/login',controller.joueur.login);
 router.get('/inscription', controller.joueur.inscription);
 
 //handle login & inscription
@@ -45,5 +53,13 @@ router.get('/mondeMaths', (req, res, next) => {
 router.get('/mondeMath',(req,res,next)=>{
   res.render('mondeMath')
 })
+
+//deconnexion
+router.get('/logout', (req, res, next)=>{
+  req.session.destroy();
+  res.locals = null;
+  res.render('logout');
+})
+
 
 module.exports =  router;

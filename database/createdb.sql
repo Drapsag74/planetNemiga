@@ -1,18 +1,17 @@
-DROP DATABASE IF EXISTS planetNemiga;
-CREATE DATABASE planetNemiga;
 DROP DATABASE IF EXISTS "planetNemiga";
 CREATE DATABASE "planetNemiga";
 
-\c planetNemiga;
 \c "planetNemiga";
 
+CREATE SCHEMA users; 
+CREATE SCHEMA challenges; 
 
-CREATE TABLE chapitre(
+CREATE TABLE challenges.chapitres(
   titre VARCHAR PRIMARY KEY,
   matiere VARCHAR(5)
 );
 
-CREATE TABLE enigme(
+CREATE TABLE challenges.enigmes(
   id SERIAL PRIMARY KEY,
   titre VARCHAR(70),
   enonce text,
@@ -20,64 +19,58 @@ CREATE TABLE enigme(
 	niveauDiff INTEGER
 );
 
-CREATE TABLE reponse(
+CREATE TABLE challenges.reponses(
   id SERIAL PRIMARY KEY,
   texte text,
-  idEnigme INTEGER REFERENCES enigme(id)
+  idEnigme INTEGER REFERENCES challenges.enigmes(id)
 );
 
-CREATE TABLE personnage(
+CREATE TABLE users.personnages(
   categorie VARCHAR PRIMARY KEY,
   sexe VARCHAR,
 	description text,
   image VARCHAR
 );
 
-CREATE TABLE ecole(
+CREATE TABLE users.ecoles(
 	nomEcole VARCHAR,
 	codePostal INTEGER,
 	ville VARCHAR,
 	PRIMARY KEY(nomEcole, codePostal)
 );
 
-CREATE TABLE classe(
+CREATE TABLE users.classes(
 	id SERIAL PRIMARY KEY,
 	nom VARCHAR(20)
 );
 
-CREATE TABLE joueur(
+CREATE TABLE users.joueurs(
   id SERIAL PRIMARY KEY,
 	pseudo VARCHAR(15) UNIQUE,
-	mail VARCHAR(40),
-	motDePasse VARCHAR(50),
-	personnage VARCHAR REFERENCES personnage(categorie),
-	ecole VARCHAR REFERENCES ecole(nomEcole),
-	classe INTEGER REFERENCES classe(id)
+	mail VARCHAR(40) UNIQUE,
+	motDePasse VARCHAR,
+	personnage VARCHAR REFERENCES users.personnages(categorie),
+	nomEcole VARCHAR,
+	codePostal INTEGER,
+	classe INTEGER REFERENCES users.classes(id),
+	FOREIGN KEY(nomEcole, codePostal) REFERENCES users.ecoles(nomEcole, codePostal)
 );
-CREATE TABLE informatique(
+CREATE TABLE challenges.informatiques(
 	niveau INTEGER PRIMARY KEY
 );
-CREATE TABLE progression(
-	informatique INTEGER REFERENCES informatique(niveau),
-	chapitre VARCHAR REFERENCES chapitre(titre),
-	joueur INTEGER REFERENCES joueur(id),
+CREATE TABLE users.progressions(
+	informatique INTEGER REFERENCES challenges.informatiques(niveau),
+	chapitre VARCHAR REFERENCES challenges.chapitres(titre),
+	joueur INTEGER REFERENCES users.joueurs(id),
 	xp INTEGER,
 	timestand INTEGER,
 	PRIMARY KEY(informatique, chapitre, joueur)
 );
 
-INSERT INTO personnage VALUES('Gaspard the god', 'homme','/images/logo.png');
-INSERT INTO personnage VALUES('Eddy la tchoin', 'indéfinie','/images/logo.png');
-INSERT INTO personnage VALUES('Clery','homme','/images/logo.png');
-INSERT INTO personnage VALUES('Zak la menace', 'homme','/images/logo.png');
-INSERT INTO personnage VALUES('mathcatch', 'indéfinie','/images/logo.png');
-INSERT INTO personnage VALUES('sachatouille','homme','/images/logo.png');
+INSERT INTO users.personnages VALUES('Gaspard the god', 'homme','/images/logo.png');
+INSERT INTO users.personnages VALUES('Eddy la tchoin', 'indéfinie','/images/logo.png');
+INSERT INTO users.personnages VALUES('Clery','homme','/images/logo.png');
+INSERT INTO users.personnages VALUES('Zak la menace', 'homme','/images/logo.png');
+INSERT INTO users.personnages VALUES('mathcatch', 'indéfinie','/images/logo.png');
+INSERT INTO users.personnages VALUES('sachatouille','homme','/images/logo.png');
 
-
-INSERT INTO enigme VALUES(DEFAULT, 'enigme du rois gaspard', 'la meilleur enigme du monde entier');
-INSERT INTO personnage VALUES('Gaspard the god', 'homme','/images/logo.png');
-INSERT INTO personnage VALUES('Eddy la tchoin', 'indéfinie','/images/logo.png');
-INSERT INTO personnage VALUES('Clery','homme','/images/logo.png');
-INSERT INTO personnage VALUES('Zak la menace', 'homme','/images/logo.png');
-INSERT INTO personnage VALUES('mathcatch', 'indéfinie','/images/logo.png');
-INSERT INTO personnage VALUES('sachatouille','homme','/images/logo.png');

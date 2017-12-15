@@ -11,7 +11,7 @@ module.exports.inscription = async function(req, res, next) {
 
 module.exports.handleLogIn = passport.authenticate('login', {
     successRedirect: '/home',
-    failureRedirect: '/',
+    failureRedirect: '/login',
     failureFlash : true 
   });
 

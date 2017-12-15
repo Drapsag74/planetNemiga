@@ -4,10 +4,10 @@ const SALTROUNDS = 10;
 
 module.exports = class Joueur {
 
-    constructor(pseudo = null) {
+    constructor(pseudo = null,mail=null) {
         this._id = null;
         this._pseudo = pseudo;
-        this._mail = null;
+        this._mail = mail;
     }
 
     getId() {
@@ -16,6 +16,10 @@ module.exports = class Joueur {
 
     getPseudo() {
         return this._pseudo;
+    }
+
+    getMail() {
+        return this._mail;
     }
 
     async findById(id) {
@@ -32,7 +36,7 @@ module.exports = class Joueur {
 
     async existe() {
         try {
-            var joueur = await dao.getJoueur(this.getPseudo());
+            var joueur = await dao.getJoueur(this.getMail);
         } catch (e) {
             console.log(e);
         }
@@ -44,8 +48,7 @@ module.exports = class Joueur {
         try {
             const salt = await bcrypt.genSalt(SALTROUNDS);
             const hash = await bcrypt.hash(motDePasse, salt);
-            await dao.nouveauJoueur(this.getPseudo(), mail, hash);
-            var joueur = await dao.getJoueur(this.getPseudo());
+            var joueur = await dao.nouveauJoueur(this.getPseudo(), mail, hash);
             this._id = joueur.id;
             this._mail = joueur.mail;
 
@@ -56,17 +59,25 @@ module.exports = class Joueur {
         return this;
     }
 
-    async verifMdp() {
-
+    async verifMdp(mail, motDePasse) {
+        try {
+            var hash = await dao.getMdp(mail);
+            var mdpEstBon = await bcrypt.compare(motDePasse, hash);
+        } catch (e) {
+            console.log(e);
+        }
+        return mdpEstBon;
     }
 
     async connect() {
         try {
-            joueur = await dao.getJoueur(getPseudo());
+            var joueur = await dao.getJoueur(this.getMail());
         } catch (e) {
             console.log(e);
         }
-        return joueur;
+        this._id = joueur.id;
+        this._pseudo = joueur.pseudo;
+        return this;
     }
 
 }
