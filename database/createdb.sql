@@ -60,7 +60,7 @@ CREATE TABLE users.ecoles_tmp(
 );
 
 \copy  users.ecoles_tmp (numero_uai, appellation_officielle, denomination_principale, patronyme_uai, secteur_public_prive_libe, adresse_uai, lieu_dit_uai, boite_postale_uai, code_postal_uai, localite_acheminement_uai, coordonnee_x, coordonnee_y, appariement, localisation, nature_uai, nature_uai_libe,etat_etablissement, type)
-FROM 'DEPP-etab-1D2D.csv' DELIMITER ' ;' HEADER CSV ;
+FROM 'DEPP-etab-1D2D.csv' DELIMITER ';' HEADER CSV ;
 
 ALTER TABLE users.ecoles_tmp DROP COLUMN numero_uai;
 ALTER TABLE users.ecoles_tmp DROP COLUMN patronyme_uai;
