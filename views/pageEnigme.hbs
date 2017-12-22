@@ -19,38 +19,7 @@
       </div>
     </div>
     {{/if}}
-    <button class="ui button" type="Temps" name="temps">
-      <time>0:0:0</time>
-    </button>
   </div>
-  <div class="ui grid">
-    <div class="ui two row column">
-
-      <div class="sixteen wide column">
-        <h2 class="ui h2">{{titre}}</h2>
-        <p>{{enonce}}</p>
-      </div>
-      <br>
-
-      <div class="ui segment" align="right">
-
-        <div>
-          <h3 align="center">reponse</h3>
-        </div>
-        <form action="/pageEnigme" method="post">
-          <div class="ui input focus">
-            <input type="text" name="reponse">
-          </div>
-          <div>
-            <button class="ui button primary" type="button" name="effacer"> effacer</button>
-            <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
-          </div>
-        </form>
-
-      </div>
-    </div>
-
-
-  </div>
+<p>{{{enigme}}}</p>
 
 </div>

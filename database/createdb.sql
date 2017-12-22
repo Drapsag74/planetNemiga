@@ -19,6 +19,7 @@ CREATE TABLE challenges.enigmes(
 	niveauDiff INTEGER
 );
 
+
 CREATE TABLE challenges.reponses(
   id SERIAL PRIMARY KEY,
   texte text,
