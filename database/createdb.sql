@@ -79,9 +79,5 @@ CREATE TABLE users.progressions(
 	PRIMARY KEY(informatique, chapitre, joueur)
 );
 
-INSERT INTO users.personnages VALUES('Gaspard the god', 'homme','/images/logo.png');
-INSERT INTO users.personnages VALUES('Eddy la tchoin', 'indéfinie','/images/logo.png');
-INSERT INTO users.personnages VALUES('Clery','homme','/images/logo.png');
-INSERT INTO users.personnages VALUES('Zak la menace', 'homme','/images/logo.png');
-INSERT INTO users.personnages VALUES('mathcatch', 'indéfinie','/images/logo.png');
-INSERT INTO users.personnages VALUES('sachatouille','homme','/images/logo.png');
+INSERT INTO users.personnages VALUES('Timix', 'indefini','/images/avatarTimix.png');
+INSERT INTO users.personnages VALUES('Infobot', 'homme','/images/avatar_tali.png');
