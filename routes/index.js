@@ -57,5 +57,12 @@ router.get('/mondeMath',(req,res,next)=>{
 //deconnexion
 router.get('/logout', controller.others.deconnexion);
 
+//equipe et contacter
+router.get('/equipe', (req, res, next) => {
+  res.render('equipe');
+})
+router.get('/contact', (req, res, next) => {
+  res.render('contact');
+})
 
 module.exports =  router;
