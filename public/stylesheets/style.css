@@ -26,6 +26,52 @@ h4>a {
   background-size: 100% 100%;
 }
 
+#Jouer{
+  margin-top : 10%;
+}
+#monde{
+  background-image: url("../images/fond 2.jp");
+  background-size: 100% 100%;
+  text-align: center;
+}
+#backgroundEnigme{
+  background-image: url("../images/background.jpg");
+  background-size: 100% 100%;
+}
+#TitreE{
+  color : white;
+}
+#backgroundPerso{
+  background-image: url("../images/background perso1.jpg");
+}
+#Description{
+  text-align: center;
+  background-color: rgba(255,255,255,0.10);
+}
+#bouton{
+  text-align: center;
+}
+p{
+  color : white;
+  font-size: 18px;
+}
+#BackgroundR{
+  background-image: url("../images/backgroundReussiMaths.jpg");
+}
+#info{
+  text-align: center;
+}
+
+#score{
+  text-align: center;
+}
+#boutonPerso2{
+  text-align: center;
+}
+#backgroundPerso2{
+  background-image: url("../images/backgroundperso.jpg");
+}
+
 .secondary.pointing.menu .toc.item {
   display: none;
 }

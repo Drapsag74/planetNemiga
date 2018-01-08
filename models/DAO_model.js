@@ -27,6 +27,14 @@ class Dao {
         return data;
     }
 
+    async getPersonnage(categorie) {
+        try {
+            var data = (await this._db.any("SELECT * FROM users.personnages WHERE categorie=$1", [categorie]))[0];
+        } catch (e) {
+            console.log("ERROR : ", e);
+        }
+        return data;
+    }
 
     /*
      *----------------------------------------------------------------
@@ -76,7 +84,7 @@ class Dao {
 
     async getJoueurById(id) {
         try {
-            var data = await this._db.one("SELECT id, pseudo, mail FROM users.joueurs WHERE id=$1", parseInt(id, 10));
+            var data = await this._db.one("SELECT id, pseudo, mail, personnage FROM users.joueurs WHERE id=$1", parseInt(id, 10));
         } catch (e) {
             console.log("ERROR : ", e);
         }
@@ -133,6 +141,20 @@ class Dao {
         return mdp.motdepasse;
     }
 
+    async ajouterPersoJoueur(perso,id) {
+        var reussis = true;
+        try {
+            await this._db.none({
+                name: 'insert-perso-joueur',
+                text: 'UPDATE users.joueurs SET personnage=$1 WHERE id=$2',
+                values: [perso,id]
+             });
+        } catch (e) {
+            console.log(e);
+            reussis = false;
+        }
+        return reussis;
+    }
 }
 
 var dao = new Dao();

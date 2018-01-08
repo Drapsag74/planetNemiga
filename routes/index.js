@@ -6,10 +6,8 @@ var router = express.Router();
 
 
 /* general middleware */
-router.use((req, res, next) => {
-  if(req.user) res.locals.pseudo = req.user._pseudo;
-  next();
-});
+router.use(controller.others.loadPseudo);
+router.use(controller.others.verifCo);
 
 
 /* GET home page. */
@@ -17,15 +15,17 @@ router.get('/', (req, res, next) => {
   res.redirect('/home');
 });
 
-router.get('/home', (req, res, next) => {
-  res.render('home', { title: 'Planet Nemiga' });
-});
+router.get('/home', controller.others.homepage);
 
 
+//choixdesPerso
+router.get('/choixPerso', controller.personnage.choix);
 
-/*choix des personnages */
-router.get('/choixPerso', controller.db.choixPerso);
-
+//page de selection d'un personnage
+router.get('/choixPerso/:id', (req, res, next) => {
+  res.render('vue'+req.params.id);
+})
+router.post('/choixPerso/:id', controller.joueur.ajouterPerso);
 
 /*reponse aux enigmes*/
 router.get('/pageEnigme',controller.enigme.randomEnigme);
@@ -55,11 +55,7 @@ router.get('/mondeMath',(req,res,next)=>{
 })
 
 //deconnexion
-router.get('/logout', (req, res, next)=>{
-  req.session.destroy();
-  res.locals = null;
-  res.render('logout');
-})
+router.get('/logout', controller.others.deconnexion);
 
 
 module.exports =  router;

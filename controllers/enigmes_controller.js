@@ -3,6 +3,7 @@ var Enigme = require('../models').enigme;
 module.exports.randomEnigme = async function(req, res, next) {
     var enigme = new Enigme();
     await enigme.randomizeEnigme();
+    res.user.idEnigme=enigme.getId();
     res.render('pageEnigme', {titre: enigme.getTitre(), enonce: enigme.getEnonce(), id: enigme.getId()});
 }
 

@@ -79,5 +79,5 @@ CREATE TABLE users.progressions(
 	PRIMARY KEY(informatique, chapitre, joueur)
 );
 
-INSERT INTO users.personnages VALUES('Timix', 'indefini','/images/avatarTimix.png');
-INSERT INTO users.personnages VALUES('Infobot', 'homme','/images/avatar_tali.png');
+INSERT INTO users.personnages VALUES('Timix', 'homme','','/images/Timix.png');
+INSERT INTO users.personnages VALUES('Infobot', 'robot','','/images/Infobot.png');

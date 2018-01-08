@@ -1,11 +1,11 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Joueur = require('./joueur_model');
+var dao = require('./DAO_model');
 
 //passport serialize, deserialize
 
 passport.serializeUser((joueur, done) => {
-    console.log(joueur);
     done(null, joueur._id);
 });
 
@@ -16,7 +16,6 @@ passport.deserializeUser(async (id, done) => {
     } catch (e) {
         console.log(e);
     }
-    console.log(joueur);
     done(null, joueur);
 });
 
@@ -24,13 +23,13 @@ passport.deserializeUser(async (id, done) => {
 
 //signup
 passport.use('signup', new LocalStrategy({
-    usernameField: 'mail',
-    passwordField: 'motDePasse',
+    usernameField: 'email',
+    passwordField: 'password',
     passReqToCallback: true
 }, async (req, email, motDePasse, done) => {
-    var joueur = new Joueur(req.body.pseudo, email);
     try {
-        joueurEx = await joueur.existe();
+        var joueur = new Joueur(null,req.body.pseudo, email);
+        joueurEx = await dao.getJoueur(email);
     } catch (e) {
         return done(e);
     }
@@ -53,7 +52,7 @@ passport.use('login', new LocalStrategy({
     passwordField: 'motDePasse',
     passReqToCallback: true
 },async (req, mail, motDePasse, done) => {
-    joueur = new Joueur(null, mail);
+    joueur = new Joueur(null,null, mail);
     try {
         var verif = await joueur.verifMdp(mail, motDePasse);
     } catch(e) {

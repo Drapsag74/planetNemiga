@@ -4,10 +4,11 @@ const SALTROUNDS = 10;
 
 module.exports = class Joueur {
 
-    constructor(pseudo = null,mail=null) {
-        this._id = null;
+    constructor(id = null,pseudo = null,mail=null) {
+        this._id = id;
         this._pseudo = pseudo;
         this._mail = mail;
+        this._personnage = null;
     }
 
     getId() {
@@ -31,6 +32,7 @@ module.exports = class Joueur {
         this._id = joueur.id;
         this._pseudo = joueur.pseudo;
         this._mail = joueur.mail;
+        this._personnage = joueur.personnage;
         return this;
     }
 
@@ -78,6 +80,17 @@ module.exports = class Joueur {
         this._id = joueur.id;
         this._pseudo = joueur.pseudo;
         return this;
+    }
+
+    async ajouterPerso(perso) {
+        try {
+            var ajoute = await dao.ajouterPersoJoueur(perso, this.getId());
+        } catch (e) {
+            console.log(e)
+            ajoute = false;
+        }
+        
+        return ajoute;
     }
 
 }
