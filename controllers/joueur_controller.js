@@ -1,5 +1,6 @@
 var passport = require('../models').passport;
 var Joueur = require('../models').joueur;
+var Progression = require('../models').progression;
 
 module.exports.login = async function(req, res, next) {
     res.render('login');
@@ -38,4 +39,13 @@ module.exports.ajouterPerso = async function(req, res, next) {
     } else {
         res.redirect('/choixPerso');
     }
+  }
+
+  module.exports.getInfoJoueur = async function(req, res, next) {
+    var joueur = new Joueur();
+    await joueur.findByPseudo(req.params.id);
+    var progression = new Progression(joueur._id);
+    res.locals.xpMath = await progression.getProgressionJoueurMatiere('math'); 
+    res.locals.joueur = joueur;
+    res.render('vueJoueur');
   }

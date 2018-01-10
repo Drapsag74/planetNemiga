@@ -41,6 +41,9 @@ h4>a {
 #TitreE{
   color : white;
 }
+#reponse{
+  color : black;
+}
 #backgroundPerso{
   background-image: url("../images/background perso1.jpg");
 }
@@ -51,7 +54,7 @@ h4>a {
 #bouton{
   text-align: center;
 }
-p{
+.selectionPerso>p{
   color : white;
   font-size: 18px;
 }

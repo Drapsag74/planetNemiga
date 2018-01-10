@@ -1,25 +1,32 @@
-<script>
+ <script>
   $(document).ready(function () {
     $('.message .close')
-      .on('click', function () {
-        $(this)
-          .closest('.message')
-          .transition('fade');
-      });
+    .on('click', function () {
+      $(this)
+      .closest('.message')
+      .transition('fade');
+    });
   });
-</script>
-
-<div class="main container">
-  <div class="">
-    {{#if reponseFausse}}
-    <div class="ui negative message">
-      <i class="close icon"></i>
-      <div class="header">
-        Mauvaise réponse
+  </script>
+</head>
+<div id="backgroundEnigme">
+  <div class="main container">
+    <div class="">
+      {{#if reponseFausse}}
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          Mauvaise réponse
+        </div>
       </div>
+      {{/if}}
     </div>
-    {{/if}}
-  </div>
-<p>{{{enigme}}}</p>
+    <div class="ui two row column">
 
+      <div class="sixteen wide column" id="TitreE">
+        {{{enonce}}}
+      </div>
+      <br>
+    </div>
+  </div>
 </div>

@@ -36,6 +36,20 @@ module.exports = class Joueur {
         return this;
     }
 
+    async findByPseudo(pseudo) {
+        try {
+            var joueur = await dao.getJoueurByPseudo(pseudo);
+        } catch (e) {
+            console.log(e);
+        }
+        this._id = joueur.id;
+        this._pseudo = joueur.pseudo;
+        this._mail = joueur.mail;
+        this._personnage = joueur.personnage;
+        return this;
+    }
+    
+
     async existe() {
         try {
             var joueur = await dao.getJoueur(this.getMail);

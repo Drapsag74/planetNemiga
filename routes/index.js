@@ -27,8 +27,13 @@ router.get('/choixPerso/:id', (req, res, next) => {
 })
 router.post('/choixPerso/:id', controller.joueur.ajouterPerso);
 
+//choix des niveaux mathématiques
+router.get('/niveauProba', (req, res, next) => {
+  res.render('niveauProba');
+})
+
 /*reponse aux enigmes*/
-router.get('/pageEnigme',controller.enigme.randomEnigme);
+router.get('/pageEnigme/:chapitre/:difficulte',controller.enigme.choisirEnigme);
 router.post('/pageEnigme', controller.enigme.verifReponse);
 
 
@@ -54,6 +59,9 @@ router.get('/mondeMath',(req,res,next)=>{
   res.render('mondeMath')
 })
 
+//page du joueur
+router.get('/joueurs/:id',controller.joueur.getInfoJoueur);
+
 //deconnexion
 router.get('/logout', controller.others.deconnexion);
 
@@ -64,5 +72,11 @@ router.get('/equipe', (req, res, next) => {
 router.get('/contact', (req, res, next) => {
   res.render('contact');
 })
+
+
+/////////////////test
+router.get('/test', (req, res, next) => {
+  res.render('test');
+});
 
 module.exports =  router;

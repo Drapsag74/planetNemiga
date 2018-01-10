@@ -16,7 +16,8 @@ CREATE TABLE challenges.enigmes(
   titre VARCHAR(70),
   enonce text,
 	nbReponse INTEGER,
-	niveauDiff INTEGER
+	niveauDiff INTEGER,
+	chapitre VARCHAR REFERENCES challenges.chapitres(titre)
 );
 
 
@@ -71,12 +72,11 @@ CREATE TABLE challenges.informatiques(
 );
 
 CREATE TABLE users.progressions(
-	informatique INTEGER REFERENCES challenges.informatiques(niveau),
 	chapitre VARCHAR REFERENCES challenges.chapitres(titre),
 	joueur INTEGER REFERENCES users.joueurs(id),
 	xp INTEGER,
 	timestand INTEGER,
-	PRIMARY KEY(informatique, chapitre, joueur)
+	PRIMARY KEY(chapitre, joueur)
 );
 
 INSERT INTO users.personnages VALUES('Timix', 'homme','','/images/Timix.png');

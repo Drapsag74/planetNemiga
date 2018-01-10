@@ -45,10 +45,26 @@ class Dao {
      */
 
 
-
-    async getEnigme(id) {
+    async getEnigmeById(id) {
         try {
-            var data = await this._db.one("SELECT * FROM challenges.enigmes WHERE id=$1", id);
+            var data = await this._db.one({
+                name: 'get-enigme-by-id',
+                text: 'SELECT * FROM challenges.enigmes WHERE id=$1',
+                values: [id]
+            })
+        } catch (e) {
+            console.log(e);
+        }
+        return data;
+    } 
+
+    async getEnigme(chapitre, difficultee) {
+        try {
+            var data = await this._db.one({
+                name: 'get-enigme',
+                text: 'SELECT * FROM challenges.enigmes WHERE chapitre=$1 AND niveauDiff=$2 ORDER BY RANDOM() LIMIT 1',
+                values: [chapitre, difficultee]
+            })
         } catch (e) {
             console.log(e);
         }
@@ -66,7 +82,11 @@ class Dao {
 
     async getReponseEnigme(idEnigme) {
         try {
-            var data = await this._db.one("SELECT * FROM challenges.reponses WHERE idEnigme=$1", idEnigme);
+            var data = await this._db.any({
+                name: 'get-reponse',
+                text: 'SELECT * FROM challenges.reponses WHERE idEnigme=$1',
+                values: [idEnigme]
+            });
         } catch (e) {
             console.log("ERROR :", e);
         }
@@ -90,6 +110,15 @@ class Dao {
         }
         return data;
     }
+    async getJoueurByPseudo(pseudo) {
+
+        try {
+            var data = await this._db.one("SELECT id, pseudo, mail, personnage FROM users.joueurs WHERE pseudo=$1", pseudo);
+        } catch (e) {
+            console.log("ERROR : ", e);
+        }
+        return data;
+    }
 
     async getJoueur(mail) {
         try {
@@ -102,7 +131,7 @@ class Dao {
     }
     async getMotDePasse(pseudo) {
         try {
-            var data = await this._db.one("SELECT motDePasse FROM users.joueurs WHERE pseudo=$1", pseudo);
+            var data = await this._db.one("SELECT motDePasse FROM users.joueurs WHERE pseudo=$1", [pseudo]);
         } catch (e) {
             console.log("ERROR : ", e);
         }
@@ -155,6 +184,89 @@ class Dao {
         }
         return reussis;
     }
+
+    /*
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     *----------------------Progression-------------------------------
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     */
+
+    async getProgressionsJoueur(joueur) {
+        try {
+            var data = await this._db.any({
+                name: 'get-progression',
+                text: 'SELECT * FROM user.progressions WHERE joueur = $1',
+                values: [joueur]
+            })
+        } catch (e) {
+            console.log(e);
+        }
+        return data;
+    }
+
+    async getProgressionJoueurChapitre(joueur, chapitre) {
+        try {
+            var data = await this._db.any({
+                name: 'get-progression-joueur-chapitre',
+                text: 'SELECT * FROM users.progressions WHERE joueur=$1 AND chapitre=$2',
+                values: [joueur, chapitre]
+            })
+        } catch (e) {
+            console.log(e);
+        }
+        return data;
+    }
+
+
+    async ajouterXpJoueur(joueur, xp, chapitre) {
+        try {
+            await this._db.none({
+                name: 'ajouter-experience',
+                text: 'UPDATE users.progressions SET xp = xp + $1 WHERE joueur=$2 AND chapitre =$3',
+                values: [xp, joueur, chapitre]
+             });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async nouvelleProgression(joueur, chapitre, xp) {
+        try {
+            await this._db.none({
+                name: 'insert-nouvelle-progression',
+                text: 'INSERT INTO users.progressions(chapitre,joueur,xp) VALUES($1, $2, $3)',
+                values: [chapitre, joueur, xp]
+             });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+    /*
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     *------------------------Chapitre--------------------------------
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     */
+
+    async getChapitres(matiere) {
+        try {
+            var data = await this._db.any({
+                name: 'get-chapitres',
+                text: 'SELECT titre FROM challenges.chapitres WHERE matiere=$1',
+                values: [matiere]
+            })
+        } catch (e) {
+            console.log(e);
+        }
+        return data;
+    }
+
 }
 
 var dao = new Dao();
