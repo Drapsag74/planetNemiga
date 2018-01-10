@@ -123,6 +123,7 @@ module.exports = class enigme {
         for (let i = 1; i < nbEssais; i++) {
             xp *= MALUSERREUR;
         }
+        xp = Math.round(xp);
         return xp;
     }
 }
