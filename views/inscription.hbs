@@ -4,6 +4,33 @@ $(document)
     $('.ui.form')
       .form({
         fields: {
+          nomEcole: {
+            identifier  : 'nomEcole',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez entrer le nom de votre école'
+              }
+            ]
+          },
+          idClasse: {
+            identifier  : 'idClasse',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez entrer le nom de votre classe'
+              }
+            ]
+          },
+          ville: {
+            identifier  : 'ville',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Veuillez entrer le nom de votre Ville'
+              }
+            ]
+          },
           email: {
             identifier  : 'email',
             rules: [
@@ -23,7 +50,16 @@ $(document)
               {
                 type   : 'empty',
                 prompt : 'Veuillez remplir le champ code postal'
+              },
+              {
+                type  : 'integer',
+                prompt: 'Code postal incorrect'
+              },
+              {
+                type  : 'exactLength[5]',
+                prompt  : 'Code postal incorrect'
               }
+
             ]
           },
           pseudo: {
@@ -75,7 +111,7 @@ $(document)
 
 <div class="main container">
   <form class="ui form" action="/inscription" method="post" >
-    <h4 class="ui dividing header">inscription</h4>
+    <h3 class="ui dividing header">Inscription</h3>
     <div class="field">
       <label>Pseudo</label>
       <div class="field">
@@ -92,10 +128,10 @@ $(document)
       <label>Ville / Code Postal</label>
       <div class="fields">
         <div class="twelve wide field">
-          <input name="ville" placeholder="ville" type="text">
+          <input name="ville" placeholder="Ville" type="text">
         </div>
         <div class="four wide field">
-          <input name="codeP" placeholder="code postal" type="text">
+          <input name="codeP" placeholder="Code Postal" type="text">
         </div>
       </div>
     </div>
@@ -118,7 +154,7 @@ $(document)
           <input name="nomEcole" placeholder="Ecole" type="text">
         </div>
         <div class="four wide field">
-          <input name="idClasse" placeholder="classe" type="text">
+          <input name="idClasse" placeholder="Classe" type="text">
         </div>
       </div>
     </div>
