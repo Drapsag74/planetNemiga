@@ -185,6 +185,30 @@ class Dao {
         return reussis;
     }
 
+    async ajouterEcoleJoueur(nomEcole, codePostal, id) {
+        try {
+            await this._db.none({
+                name: 'insert-ecole-joueur',
+                text: 'UPDATE users.joueurs SET nomEcole=$1, codePostal=$2 WHERE id=$3',
+                values: [nomEcole, codePostal, id]
+             });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async ajouterClasseJoueur(nomClasse, id) {
+        try {
+            await this._db.none({
+                name: 'insert-classe-joueur',
+                text: 'UPDATE users.joueurs SET classe=$1 WHERE id=$2',
+                values: [nomClasse, id]
+             });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     /*
      *----------------------------------------------------------------
      *----------------------------------------------------------------
@@ -266,6 +290,79 @@ class Dao {
         }
         return data;
     }
+
+
+
+    /*
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     *-------------------------Ecole----------------------------------
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     */
+
+    async getEcole(nomEcole, codePostal) {
+        try {
+            var data = await this._db.any({
+                name: 'get-ecole',
+                text: 'SELECT * FROM users.ecoles WHERE nomEcole=$1 AND codePostal=$2',
+                values: [nomEcole, codePostal]
+            })
+        } catch (e) {
+            console.log(e);
+        }
+        return data;
+    }
+
+    async nouvelleEcole(nomEcole, codePostal, ville) {
+        try {
+            await this._db.none({
+                name: 'insert-nouvelle-ecole',
+                text: 'INSERT INTO users.ecoles(nomEcole, codePostal, ville) VALUES($1, $2, $3)',
+                values: [nomEcole, codePostal, ville]
+             });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    /*
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     *-------------------------Classe---------------------------------
+     *----------------------------------------------------------------
+     *----------------------------------------------------------------
+     */
+
+
+    async getClasse(nom,nomEcole, codePostal) {
+        try {
+            var data = await this._db.any({
+                name: 'get-classe',
+                text: 'SELECT * FROM users.classes WHERE nom=$1 AND nomEcole=$2 AND codePostal =$3',
+                values: [nom ,nomEcole, codePostal]
+            })
+        } catch (e) {
+            console.log(e);
+        }
+        return data;
+    }
+
+    async nouvelleClasse(nom, nomEcole, codePostal) {
+        try {
+            await this._db.none({
+                name: 'insert-nouvelle-classe',
+                text: 'INSERT INTO users.classes(nom, nomEcole, codePostal) VALUES($1, $2, $3)',
+                values: [nom,nomEcole, codePostal]
+             });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    
 
 }
 

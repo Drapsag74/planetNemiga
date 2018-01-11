@@ -45,7 +45,8 @@ module.exports.ajouterPerso = async function(req, res, next) {
     var joueur = new Joueur();
     await joueur.findByPseudo(req.params.id);
     var progression = new Progression(joueur._id);
-    res.locals.xpMath = await progression.getProgressionJoueurMatiere('math'); 
+    var xpMath = await progression.getProgressionJoueurMatiere('math'); 
+    res.locals.niveauMath = progression.calculNiveau(xpMath);
     res.locals.joueur = joueur;
     res.render('vueJoueur');
   }

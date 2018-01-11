@@ -2,6 +2,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var Joueur = require('./joueur_model');
 var dao = require('./DAO_model');
+var Ecole = require('./ecole_model');
+var Classe = require('./classe_model');
 
 //passport serialize, deserialize
 
@@ -37,6 +39,13 @@ passport.use('signup', new LocalStrategy({
     else {
         try {
             joueur = await joueur.init(email, motDePasse);
+            var codeP = parseInt(req.body.codeP);
+            var ecole = new Ecole(req.body.nomEcole, codeP, req.body.ville);
+            await ecole.ajouter();
+            await joueur.ajouterEcole(req.body.nomEcole, codeP);
+            var classe = new Classe(req.body.idClasse, req.body.nomEcole, codeP);
+            await classe.ajouter();
+            await joueur.ajouterClasse(classe._id);
         } catch (e) {
             return done(null, false, {
                 message: "Erreur lors de la création de l'utilisateur"

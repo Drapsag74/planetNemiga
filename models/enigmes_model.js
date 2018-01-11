@@ -10,7 +10,7 @@ const XPBASEENIGME = 120;
  * @property {string} _enonce - enonce de l'énigme
  * @private
  */
-module.exports = class enigme {
+module.exports = class Enigme {
 
     /**
      * @param {number} id - id de l'énigme (null par défaut)
