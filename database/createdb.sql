@@ -52,7 +52,10 @@ INSERT INTO users.ecoles(nomEcole, codePostal, ville) VALUES ('Jules Flandrin',3
 
 CREATE TABLE users.classes(
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR(20)
+	nom VARCHAR(20),
+	nomEcole VARCHAR,
+	codePostal INTEGER,
+	FOREIGN KEY(nomEcole, codePostal) REFERENCES users.ecoles(nomEcole, codePostal)
 );
 
 CREATE TABLE users.joueurs(

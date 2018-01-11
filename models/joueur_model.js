@@ -107,4 +107,21 @@ module.exports = class Joueur {
         return ajoute;
     }
 
+    async ajouterEcole(nomEcole, codePostal) {
+        try {
+            await dao.ajouterEcoleJoueur(nomEcole, codePostal, this.getId());
+        } catch (e) {
+            console.log(e)
+            ajoute = false;
+        }
+    }
+
+    async ajouterClasse(nomClasse) {
+        try {
+            await dao.ajouterClasseJoueur(nomClasse, this.getId());
+        } catch (e) {
+            console.log(e)
+            ajoute = false;
+        }
+    }
 }
