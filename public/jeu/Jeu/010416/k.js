@@ -82,7 +82,7 @@ var jeu = {
 
 
 	createEnnemi : function (){
-		for (var i = 0; i < 8; i++)
+		for (var i = 0; i < 5; i++)
         {
 						var x = game.world.randomX;
 						var y = game.world.randomY;
@@ -321,7 +321,7 @@ var jeu = {
 		this.tirsuivantEnnemi = 2000;
 		this.ennemiVivant = [];
 		this.i = 1;
-		this.vie = 100;
+		this.vie = 120;
 		this.enjeu = false;
 		jeu.action = false;
 		this.munition = 50;
