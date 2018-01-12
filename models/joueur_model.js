@@ -9,6 +9,7 @@ module.exports = class Joueur {
         this._pseudo = pseudo;
         this._mail = mail;
         this._personnage = null;
+        this._nomEcole = null;
     }
 
     getId() {
@@ -46,6 +47,7 @@ module.exports = class Joueur {
         this._pseudo = joueur.pseudo;
         this._mail = joueur.mail;
         this._personnage = joueur.personnage;
+        this._nomEcole = joueur.nomEcole;
         return this;
     }
     

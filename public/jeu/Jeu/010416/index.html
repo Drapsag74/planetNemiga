@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Planet Nemiga</title>
+  <link rel="stylesheet" href="../node_modules/semantic/semantic.min.css">
+    <script src="../node_modules/ace/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../node_modules/ace/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../bundle.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="phaser.min.js"></script>
+  <script type="text/javascript" src="k.js"></script>
+
+  <style type="text/css" media="screen">
+  body{
+    height : 700px;
+    width : 1000px;
+  }
+      #editor {
+        position: absolute;
+        height: 660px;
+        width: 310px;
+        top : 50px;
+        left:1010px;
+      }
+
+      #bouton{
+        position : absolute;
+        height : 40px;
+        width : 100px;
+        top : 10px;
+        left:1010px;
+      }
+
+      #boutonTuto{
+        position : absolute;
+        height : 40px;
+        width : 100px;
+        top : 10px;
+        left:1110px;
+      }
+  </style>
+
+</head>
+<body>
+
+  <div id="jeu">
+
+  </div>
+  <button id= "bouton" class "ui button"  onclick="jeu.lire()" type="button" name="Envoyer"> Envoyer </button>
+  <button id= "boutonTuto" class "ui button"   type="button" name="tuto"> Tutoriel </button>
+
+            <div id="editor">
+player.avancer();
+player.avancer();
+player.monter();
+player.monter();
+player.avancer();
+player.avancer();
+player.avancer();
+player.avancer();
+player.avancer();
+player.descendre();
+player.descendre();
+player.avancer();
+player.avancer();
+            </div>
+
+            <script>
+                var editor = ace.edit("editor");
+                var val;
+                editor.setTheme("ace/theme/monokai");
+                editor.getSession().setMode("ace/mode/javascript");
+            </script>
+
+
+</body>
+</html>

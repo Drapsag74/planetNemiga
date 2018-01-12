@@ -113,7 +113,7 @@ class Dao {
     async getJoueurByPseudo(pseudo) {
 
         try {
-            var data = await this._db.one("SELECT id, pseudo, mail, personnage FROM users.joueurs WHERE pseudo=$1", pseudo);
+            var data = await this._db.one("SELECT id, pseudo, mail, personnage,nomecole FROM users.joueurs WHERE pseudo=$1", pseudo);
         } catch (e) {
             console.log("ERROR : ", e);
         }

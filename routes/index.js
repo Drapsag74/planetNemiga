@@ -59,6 +59,10 @@ router.get('/mondeMath',(req,res,next)=>{
   res.render('mondeMath')
 })
 
+router.get('/pythagore', (req, res, next) => {
+  res.render('niveauPythagore');
+})
+
 //page du joueur
 router.get('/joueurs/:id',controller.joueur.getInfoJoueur);
 
