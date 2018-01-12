@@ -35,10 +35,6 @@ $(document)
             identifier  : 'email',
             rules: [
               {
-                type   : 'empty',
-                prompt : 'Veuillez entrer votre E-mail'
-              },
-              {
                 type   : 'email',
                 prompt : 'E-mail incorrect'
               }
@@ -48,16 +44,12 @@ $(document)
             identifier  : 'codeP',
             rules: [
               {
-                type   : 'empty',
-                prompt : 'Veuillez remplir le champ code postal'
-              },
-              {
                 type  : 'integer',
                 prompt: 'Code postal incorrect'
               },
               {
                 type  : 'exactLength[5]',
-                prompt  : 'Code postal incorrect'
+                prompt  : 'La taille du code postal doit être de 5 caractères'
               }
 
             ]
@@ -66,11 +58,11 @@ $(document)
             identifier  : 'pseudo',
             rules: [
               {
-                type   : 'empty',
-                prompt : 'Veuillez remplir le champ pseudo'
+                type   : 'maxLength[15]',
+                prompt : 'Le pseudo doit comporter moins de 15 caratères'
               },
               {
-                type   : 'length[5]',
+                type   : 'minLength[5]',
                 prompt : 'Le pseudo doit comporter au moins 5 caratères'
               }
             ]
@@ -87,10 +79,6 @@ $(document)
           password: {
             identifier  : 'password',
             rules: [
-              {
-                type   : 'empty',
-                prompt : 'Veuillez entrer votre mot de passe'
-              },
               {
                 type   : 'length[6]',
                 prompt : 'Votre mot de passe doit comporter au moins 6 caractères'
