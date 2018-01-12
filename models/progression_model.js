@@ -32,9 +32,15 @@ module.exports = class {
         var xpTot = 0;
         try {
             var chapitres = await dao.getChapitres(matiere);
-            console.log(chapitres);
             for(let i=0; i < chapitres.length; i++) {
-                xpTot += (await dao.getProgressionJoueurChapitre(this._joueur, chapitres[i].titre))[0].xp;
+                try {
+                    var progression = await dao.getProgressionJoueurChapitre(this._joueur, chapitres[i].titre)[0].xp;
+                } catch(e) {
+                    console.log(e);
+                    var progression = 0;
+                    console.log(progression);
+                }
+                xpTot += progression;
             }
         } catch (error) {
             console.log(error);

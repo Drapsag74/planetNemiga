@@ -47,7 +47,7 @@ module.exports = class Joueur {
         this._pseudo = joueur.pseudo;
         this._mail = joueur.mail;
         this._personnage = joueur.personnage;
-        this._nomEcole = joueur.nomEcole;
+        this._nomEcole = joueur.nomecole;
         return this;
     }
     
