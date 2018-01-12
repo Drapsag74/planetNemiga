@@ -16,7 +16,8 @@ CREATE TABLE challenges.enigmes(
   titre VARCHAR(70),
   enonce text,
 	nbReponse INTEGER,
-	niveauDiff INTEGER
+	niveauDiff INTEGER,
+	chapitre VARCHAR REFERENCES challenges.chapitres(titre)
 );
 
 
@@ -51,7 +52,10 @@ INSERT INTO users.ecoles(nomEcole, codePostal, ville) VALUES ('Jules Flandrin',3
 
 CREATE TABLE users.classes(
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR(20)
+	nom VARCHAR(20),
+	nomEcole VARCHAR,
+	codePostal INTEGER,
+	FOREIGN KEY(nomEcole, codePostal) REFERENCES users.ecoles(nomEcole, codePostal)
 );
 
 CREATE TABLE users.joueurs(
@@ -71,16 +75,15 @@ CREATE TABLE challenges.informatiques(
 );
 
 CREATE TABLE users.progressions(
-	informatique INTEGER REFERENCES challenges.informatiques(niveau),
 	chapitre VARCHAR REFERENCES challenges.chapitres(titre),
 	joueur INTEGER REFERENCES users.joueurs(id),
 	xp INTEGER,
 	timestand INTEGER,
-	PRIMARY KEY(informatique, chapitre, joueur)
+	PRIMARY KEY(chapitre, joueur)
 );
 
-INSERT INTO users.personnages VALUES('Timix', 'indefini','<p>Description : <br> Timix a vécut dans la rue depuis qu''il est petit. Il a pu acquérir une agilité incroyable
            . Grâce à ça, il est rapide et sais comment gagner du temps dans la ville. Il pourra donc peut-être t''aider à
+INSERT INTO users.personnages VALUES('Timix', 'indefini','<p>Description : <br> Timix a vécut dans la rue depuis qu''il est petit. Il a pu acquérir une agilité incroyable
          gagner du temps pour certaines énigmes. </p>','/images/avatarTimix.png');
 INSERT INTO users.personnages VALUES('Infobot', 'homme','<p>Description : <br> InfoBot a été créé par Docteur Bronx, il fut le premier robot capable de pouvoir programmer ses propres code informatique <br>
            Il s''améliore de jour en jour dans la programmation et réalise même des programmes pour se perfectionner lui même.

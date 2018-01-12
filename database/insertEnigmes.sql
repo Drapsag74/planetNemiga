@@ -1,13 +1,15 @@
 \c 'planetNemiga';
-INSERT INTO challenges.enigmes(2,'','<div class="main container">
+
+INSERT INTO challenges.chapitres VALUES('proba','math');
+INSERT INTO challenges.enigmes VALUES (1,'Le grand immeuble','<div class="main container">
      <div class="ui grid">
        <div class="ui two row column">
 
-         <div class="sixteen wide column" id="TitreE">
-           <h2 class="ui h2">Un immeuble</h2>
+         <div class="sixteen wide column" id="Titre&E">
+           <h2 class="ui h2">Un immeuble</h2>p
            <p>Un immeuble a une base rectangulaire avec un côté de 40m,
               sa diagonale mesure 50m. En marchant à 3m/s, combien de
-              temps faut-il pour faire le tour de l\'immeuble ?(arrondir a l\'unité)</p>
+              temps faut-il pour faire le tour de l''immeuble ?(arrondir a l''unité)</p>
          </div>
          <br>
 
@@ -34,57 +36,61 @@ INSERT INTO challenges.enigmes(2,'','<div class="main container">
    </div>
 ',1,1);
 
-INSERT INTO challenges.reponses(1,'47',1);
+INSERT INTO challenges.reponses VALUES (1,'47',1);
 
-INSERT INTO challenges.enigmes(3,'Probabilité','<div class="main container">
-     <div class="ui grid">
-       <div class="ui two row column">
+INSERT INTO challenges.enigmes VALUES (2,'Probabilité','<div class="main container" style="background-image:url(''/images/EnigmePorte.jpg;'')">
+    <div class="ui two row column">
 
-         <div class="sixteen wide column" id="TitreE">
-           <h2 class="ui h2">Probabilité</h2>
-           <p>Une porte se présente à vous, pour la franchit il
+      <div class="sixteen wide column" id="TitreE">
+        <h2 class="ui h2">Probabilité</h2>
+        <p>Une porte se présente à vous, pour la franchit il
               vous faut une clé bleu. Un second verrou bloque la
-               porte, pour l\'ouvrir il vous faut une clé verte.
+               porte, pour l''ouvrir il vous faut une clé verte.
                Dans une urne il y a 3 clés bleues(B), 3 clés vertes(V),
                 et 3 clés marrons(M), indiscernables au toucher. On tire
                  successivement et sans remise deux boules. <br>
                  Quelle est la probabilité de tirer une première
                  clé bleu et une seconde clé verte ?(un arbre de
                  probabilités pourrait vous aider)</p>
-         </div>
-         <br>
+      </div>
+      <br>
 
-         <div class="ui segment" align="right">
+      <div class="sixteen wide column">
+        <img class="ui medium centered image" src="/images/busteScientist.png" alt="">
+      </div>
+      <div class="ui grid">
+        <div class="sixteen wide column">
+          <div class="ui segment" align="right" style=" text-align = center;">
+            <div id="reponse">
+              <h3 align="center">reponse</h3>
+            </div>
+            <br>
+            <form action="/pageEnigme" method="post">
+              <div class="ui center align page grid input focus">
+                <input type="text" name="reponse" style="text-align : center;">
+              </div>
+              <br>
+              <div style="text-align : center;">
+                <button class="ui button primary" type="button" name="effacer"> effacer</button>
+                <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+',1,1, 'proba');
+INSERT INTO challenges.reponses VALUES (2,'9/72',2);
 
-           <div id="reponse">
-             <h3 align="center">reponse</h3>
-           </div>
-           <form action="/pageEnigme" method="post">
-             <div class="ui input focus">
-               <input type="text" name="reponse">
-             </div>
-             <div>
-               <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
-             </div>
-           </form>
-
-         </div>
-       </div>
-
-
-     </div>
-
-   </div>
-',1,1);
-INSERT INTO challenges.reponses(2,'9/72',2);
-
-INSERT INTO challenges.enigmes(4,'PLANET','<div class="main container">
+INSERT INTO challenges.enigmes VALUES (3,'PLANET','<div class="main container">
      <div class="ui grid">
        <div class="ui two row column">
 
          <div class="sixteen wide column" id="TitreE">
            <h2 class="ui h2">Trouver le mot</h2>
-           <p>Les lettres de l\'alphabet sont numérotées de 1 à 26
+           <p>Les lettres de l''alphabet sont numérotées de 1 à 26
               (A vaut 1, Z vaut 26). En résolvant les équations trouvez
                le mot de passe !<br>
 
@@ -121,4 +127,4 @@ INSERT INTO challenges.enigmes(4,'PLANET','<div class="main container">
 '
 ,1,1);
 
-INSERT INTO challenges.reponses(3,'planet',3);
+INSERT INTO challenges.reponses VALUES (3,'planet',3);

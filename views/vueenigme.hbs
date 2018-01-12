@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="/stylesheets/Semantic-UI-CSS-master/semantic.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script>
+  $(document).ready(function () {
+    $('.message .close')
+    .on('click', function () {
+      $(this)
+      .closest('.message')
+      .transition('fade');
+    });
+  });
+  </script>
+</head>
+<body id="backgroundEnigme">
+  <div class="main container">
+    <div class="">
+      {{#if reponseFausse}}
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          Mauvaise réponse
+        </div>
+      </div>
+      {{/if}}
+    </div>
+    <div class="ui two row column">
+
+      <div class="sixteen wide column" id="TitreE">
+        <h2 class="ui h2">{{titre}}</h2>
+        <p>{{enonce}}</p>
+      </div>
+      <br>
+
+      <div class="sixteen wide column">
+        <img class="ui medium centered image"src="../images/busteScientist.png" alt="">
+      </div>
+      <div class="ui grid">
+        <div class="sixteen wide column">
+          <div class="ui segment" align="right" style=" text-align = 'center';">
+            <div id="reponse">
+              <h3 align="center">reponse</h3>
+            </div>
+            <br>
+            <form action="/pageEnigme" method="post">
+              <div class="ui center align page grid input focus">
+                <input type="text" name="reponse" style="text-align : center;">
+              </div>
+              <br>
+              <div style="text-align : center;">
+                <button class="ui button primary" type="button" name="effacer"> effacer</button>
+                <button class="ui button primary" type="submit" name="idEnigme" value={{id}}> envoyer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  </html>

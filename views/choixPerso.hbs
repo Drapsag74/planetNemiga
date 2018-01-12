@@ -14,8 +14,8 @@
 
   <div class="ui stackable grid">
     {{#each personnages}}
-    <div class="eight wide column segment" align="center" style="height : 200px;background-image : url(/images/bambi.png);background-size: 80% 100%;background-repeat : no-repeat;">
-      <a href="#"><h1 align="left" class="ui grey header">{{classe}} : {{sexe}}</h1></a>
+    <div class="eight wide column segment" align="center" style="height : 200px;background-image : url({{image}});background-size: 80% 100%;background-repeat : no-repeat;">
+      <a href="/choixPerso/{{categorie}}"><h1 align="left" class="ui grey header">{{classe}} : {{sexe}}</h1></a>
     </div>
     {{/each}}
 

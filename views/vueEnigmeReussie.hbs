@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+<body id="BackgroundR">
+  <div class="ui grid">
+    <div class="sixteen wide column">
+    </div>
+    <div class="sixteen wide column" id="info">
+        <h1 class="ui inverted header">Bravo ! Vous avez réussi l'énigme en {{numEssais}} essai(s) !</h1>
+        <img class = "ui medium centered image" src="../images/scientifque.png" alt="" id="image">
+    </div>
+    <div class="sixteen wide column" id="score">
+      <h3 class="ui big inverted header">Vous avez gagné {{xp}} point d'experience !</h3>
+    </div>
+    <div class="sixteen wide column" id="bouton">
+      <button class="ui large red basic button" style="margin-bottom: 15%;">Retour à la map</button>
+      <a href="pageEnigme/{{chapitre}}/{{difficulte}}"><button class="ui large blue basic button">Suivant</button></a>
+    </div>
+  </div>
+</body>
+</html>

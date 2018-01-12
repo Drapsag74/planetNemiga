@@ -6,10 +6,8 @@ var router = express.Router();
 
 
 /* general middleware */
-router.use((req, res, next) => {
-  if(req.user) res.locals.pseudo = req.user._pseudo;
-  next();
-});
+router.use(controller.others.loadPseudo);
+router.use(controller.others.verifCo);
 
 
 /* GET home page. */
@@ -17,18 +15,25 @@ router.get('/', (req, res, next) => {
   res.redirect('/home');
 });
 
-router.get('/home', (req, res, next) => {
-  res.render('home', { title: 'Planet Nemiga' });
-});
+router.get('/home', controller.others.homepage);
 
 
+//choixdesPerso
+router.get('/choixPerso', controller.personnage.choix);
 
-/*choix des personnages */
-router.get('/choixPerso', controller.db.choixPerso);
+//page de selection d'un personnage
+router.get('/choixPerso/:id', (req, res, next) => {
+  res.render('vue'+req.params.id);
+})
+router.post('/choixPerso/:id', controller.joueur.ajouterPerso);
 
+//choix des niveaux mathématiques
+router.get('/niveauProba', (req, res, next) => {
+  res.render('niveauProba');
+})
 
 /*reponse aux enigmes*/
-router.get('/pageEnigme',controller.enigme.randomEnigme);
+router.get('/pageEnigme/:chapitre/:difficulte',controller.enigme.choisirEnigme);
 router.post('/pageEnigme', controller.enigme.verifReponse);
 
 
@@ -54,12 +59,24 @@ router.get('/mondeMath',(req,res,next)=>{
   res.render('mondeMath')
 })
 
+//page du joueur
+router.get('/joueurs/:id',controller.joueur.getInfoJoueur);
+
 //deconnexion
-router.get('/logout', (req, res, next)=>{
-  req.session.destroy();
-  res.locals = null;
-  res.render('logout');
+router.get('/logout', controller.others.deconnexion);
+
+//equipe et contacter
+router.get('/equipe', (req, res, next) => {
+  res.render('equipe');
+})
+router.get('/contact', (req, res, next) => {
+  res.render('contact');
 })
 
+
+/////////////////test
+router.get('/test', (req, res, next) => {
+  res.render('test');
+});
 
 module.exports =  router;
