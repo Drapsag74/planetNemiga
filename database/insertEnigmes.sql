@@ -38,7 +38,7 @@ INSERT INTO challenges.enigmes VALUES (1,'Le grand immeuble','<div class="main c
 
 INSERT INTO challenges.reponses VALUES (1,'47',1);
 
-INSERT INTO challenges.enigmes VALUES (2,'Probabilité','<div class="main container">
+INSERT INTO challenges.enigmes VALUES (2,'Probabilité','<div class="main container" style="background-image:url(''/images/EnigmePorte.jpg;'')">
     <div class="ui two row column">
 
       <div class="sixteen wide column" id="TitreE">
