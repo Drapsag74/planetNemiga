@@ -79,5 +79,9 @@ CREATE TABLE users.progressions(
 	PRIMARY KEY(informatique, chapitre, joueur)
 );
 
-INSERT INTO users.personnages VALUES('Timix', 'indefini','/images/avatarTimix.png');
-INSERT INTO users.personnages VALUES('Infobot', 'homme','/images/avatar_tali.png');
+INSERT INTO users.personnages VALUES('Timix', 'indefini','<p>Description : <br> Timix a vécut dans la rue depuis qu''il est petit. Il a pu acquérir une agilité incroyable
+           . Grâce à ça, il est rapide et sais comment gagner du temps dans la ville. Il pourra donc peut-être t''aider à
+         gagner du temps pour certaines énigmes. </p>','/images/avatarTimix.png');
+INSERT INTO users.personnages VALUES('Infobot', 'homme','<p>Description : <br> InfoBot a été créé par Docteur Bronx, il fut le premier robot capable de pouvoir programmer ses propres code informatique <br>
+           Il s''améliore de jour en jour dans la programmation et réalise même des programmes pour se perfectionner lui même.
+           <br> Il pourra peut-être vous aider en informatique. </p>','/images/avatar_tali.png');
