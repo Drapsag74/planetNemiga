@@ -6,8 +6,8 @@ aims to be a ludo-educative application
 ### Installing
 
 you need to have nodemon install globally
-Use ``npm start`` to launch the server
-by default the server is accessible via ``localhost:3000``
+Use ``npm start`` to launch the application
+by default the application is accessible via ``localhost:3000``
 
 
 ## Built with
